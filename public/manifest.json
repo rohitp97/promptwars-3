@@ -1,0 +1,9 @@
+{
+  "name": "Trace",
+  "short_name": "Trace",
+  "description": "Every choice leaves a trace. Know yours.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f0d",
+  "theme_color": "#22c55e"
+}
