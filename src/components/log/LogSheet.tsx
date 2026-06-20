@@ -127,7 +127,7 @@ export const LogSheet: React.FC<LogSheetProps> = ({
         className="animate-slide-up w-full max-w-lg bg-surface border-t border-border rounded-t-[2.5rem] px-6 pb-8 pt-4 max-h-[85vh] overflow-y-auto flex flex-col shadow-2xl"
       >
         {/* Handle Bar (decorative drag indicator) */}
-        <div className="w-12 h-1.5 bg-gray-700 rounded-full mx-auto mb-6 flex-shrink-0" />
+        <div className="w-12 h-1.5 bg-gray-700 rounded-full mx-auto mb-6 flex-shrink-0" aria-hidden="true" />
 
         {/* Step 1: Category Grid */}
         {step === 1 && (

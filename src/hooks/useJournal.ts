@@ -32,13 +32,13 @@ export function useJournal(city: string) {
     };
 
     storage.addEntry(newEntry, city);
-    setEntries(storage.getJournal(city));
+    setEntries(prev => [...prev, newEntry]);
     return newEntry;
   }, [city]);
 
   const updateEntry = useCallback((id: string, updatedFields: Partial<JournalEntry>) => {
     storage.updateEntry(id, updatedFields, city);
-    setEntries(storage.getJournal(city));
+    setEntries(prev => prev.map(e => e.id === id ? { ...e, ...updatedFields } : e));
   }, [city]);
 
   const clearJournal = useCallback(() => {

@@ -52,7 +52,7 @@ function App() {
       // 3. Update entry with the story
       updateEntry(entry.id, { story });
     } catch (err) {
-      console.error('Error logging activity:', err);
+      if (import.meta.env.DEV) console.error('Error logging activity:', err);
     }
   };
 
@@ -93,8 +93,9 @@ function App() {
           </p>
         </div>
         <div className="flex flex-col items-end">
-          <span className="text-[9px] uppercase tracking-wider text-gray-500 font-bold">Location</span>
+          <label htmlFor="city-select" className="text-[9px] uppercase tracking-wider text-gray-500 font-bold">Location</label>
           <select
+            id="city-select"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             className="bg-surface border border-border/70 text-emerald-400 font-semibold text-xs py-1 px-2.5 rounded-lg focus-visible:outline-none cursor-pointer mt-1"

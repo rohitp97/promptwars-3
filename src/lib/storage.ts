@@ -8,7 +8,7 @@ function safeGet<T>(key: string, fallback: T): T {
     if (!item) return fallback;
     return JSON.parse(item) as T;
   } catch (error) {
-    console.error(`Error reading key "${key}" from localStorage:`, error);
+    if (import.meta.env.DEV) console.error(`Error reading key "${key}" from localStorage:`, error);
     return fallback;
   }
 }
@@ -17,7 +17,7 @@ function safeSet<T>(key: string, value: T): void {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
-    console.error(`Error writing key "${key}" to localStorage:`, error);
+    if (import.meta.env.DEV) console.error(`Error writing key "${key}" to localStorage:`, error);
   }
 }
 

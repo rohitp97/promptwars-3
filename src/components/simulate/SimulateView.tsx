@@ -283,16 +283,17 @@ export const SimulateView: React.FC<SimulateViewProps> = ({
         <div
           className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-xs"
           onClick={() => setActivePicker(null)}
-          role="dialog"
-          aria-modal="true"
         >
           <div
             ref={pickerPanelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Select an activity for Choice ${activePicker}`}
             onClick={(e) => e.stopPropagation()}
             className="animate-slide-up w-full max-w-lg bg-surface border-t border-border rounded-t-[2.5rem] px-6 pb-8 pt-4 max-h-[85vh] overflow-y-auto flex flex-col shadow-2xl"
           >
             {/* Handle bar */}
-            <div className="w-12 h-1.5 bg-gray-700 rounded-full mx-auto mb-6 flex-shrink-0" />
+            <div className="w-12 h-1.5 bg-gray-700 rounded-full mx-auto mb-6 flex-shrink-0" aria-hidden="true" />
 
             <div className="text-center mb-2">
               <span className="text-xs uppercase font-extrabold text-emerald-400 tracking-wider">
