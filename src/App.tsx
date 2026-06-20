@@ -145,7 +145,11 @@ function App() {
 
       {/* Toast Notification */}
       {toast && (
-        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 bg-emerald-500 text-black px-5 py-3 rounded-full font-bold text-xs shadow-xl z-40 tracking-wider uppercase">
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-24 left-1/2 -translate-x-1/2 bg-emerald-500 text-black px-5 py-3 rounded-full font-bold text-xs shadow-xl z-40 tracking-wider uppercase"
+        >
           {toast}
         </div>
       )}

@@ -66,4 +66,27 @@ describe('LogSheet', () => {
     fireEvent.click(screen.getByRole('button', { name: /Back to categories/i }));
     expect(screen.getByText('What did you do?')).toBeInTheDocument();
   });
+
+  it('completes the full 3-step flow and calls onLog with the selected activity id', () => {
+    const onLog = vi.fn();
+    const onClose = vi.fn();
+    render(<LogSheet isOpen={true} onClose={onClose} onLog={onLog} onSimulateClick={() => {}} />);
+
+    // Step 1 → click Travel
+    fireEvent.click(screen.getByText('Travel'));
+    expect(screen.getByText('Travel Actions')).toBeInTheDocument();
+
+    // Step 2 → select an activity from the listbox
+    fireEvent.click(screen.getByText('Domestic flight'));
+    expect(screen.getByRole('option', { name: /Domestic flight/i })).toHaveAttribute('aria-selected', 'true');
+
+    // Advance to step 3
+    fireEvent.click(screen.getByRole('button', { name: /Next/i }));
+    expect(screen.getByText('Confirm Decision')).toBeInTheDocument();
+
+    // Step 3 → confirm
+    fireEvent.click(screen.getByRole('button', { name: 'Log It' }));
+    expect(onLog).toHaveBeenCalledWith('flight_domestic');
+    expect(onClose).toHaveBeenCalledOnce();
+  });
 });

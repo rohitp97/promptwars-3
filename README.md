@@ -72,7 +72,7 @@ npm run dev
 ### Run Tests
 
 ```bash
-npm run test           # Run all tests (27 tests, 3 files)
+npm run test           # Run all tests (75 tests, 9 files)
 npm run test:coverage  # Coverage report
 ```
 
@@ -172,8 +172,8 @@ Gemini consequence stories reference real, named events:
 - All CSS animations defined once in `index.css` — not injected per component instance
 
 ### Testing
-- 27 tests across 3 files, all passing
-- Tests cover pure functions only — no mocks needed
+- 75 tests across 9 files, all passing
+- Tests cover pure functions, React components, and custom hooks
 - Full boundary value coverage on `toRelatableUnit` and `deriveSceneState`
 - Edge cases: negative kgCO2 (climate wins), cross-month filtering, empty arrays
 - Intentional exceptions explicitly documented in test assertions
