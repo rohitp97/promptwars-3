@@ -90,7 +90,7 @@ export const ActivityList: React.FC<ActivityListProps> = ({
             <path d="m15 18-6-6 6-6" />
           </svg>
         </button>
-        <h2 className="text-lg font-bold text-green-50 capitalize">
+        <h2 id="log-sheet-title" className="text-lg font-bold text-green-50 capitalize">
           {getCategoryTitle()} Actions
         </h2>
       </div>

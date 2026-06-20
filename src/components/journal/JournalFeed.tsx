@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { JournalEntry, ScenePollutionLevel } from '../../types';
 import { StoryCard } from './StoryCard';
 
@@ -19,7 +19,10 @@ export const JournalFeed: React.FC<JournalFeedProps> = ({
   pollutionLevel,
   onOpenLogSheet,
 }) => {
-  const sortedEntries = [...entries].sort((a, b) => b.timestamp - a.timestamp);
+  const sortedEntries = useMemo(
+    () => [...entries].sort((a, b) => b.timestamp - a.timestamp),
+    [entries]
+  );
 
   const getPillStyles = () => {
     switch (pollutionLevel) {

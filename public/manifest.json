@@ -1,9 +1,18 @@
 {
-  "name": "Trace",
+  "name": "Trace — Carbon Consequence Storyteller",
   "short_name": "Trace",
   "description": "Every choice leaves a trace. Know yours.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0f0d",
-  "theme_color": "#22c55e"
+  "theme_color": "#22c55e",
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }

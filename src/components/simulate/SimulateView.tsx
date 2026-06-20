@@ -47,6 +47,43 @@ export const SimulateView: React.FC<SimulateViewProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activePicker]);
 
+  // Focus trap for picker panel
+  const handlePickerTabTrap = (e: React.KeyboardEvent) => {
+    if (!pickerPanelRef.current || e.key !== 'Tab') return;
+    const focusables = pickerPanelRef.current.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [tabindex="0"], [role="listbox"]'
+    );
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
+
+  // Move focus into picker panel when it opens
+  useEffect(() => {
+    if (activePicker) {
+      const timer = setTimeout(() => {
+        if (pickerPanelRef.current) {
+          const focusables = pickerPanelRef.current.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [tabindex="0"], [role="listbox"]'
+          );
+          if (focusables.length > 0) focusables[0].focus();
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [activePicker]);
+
   const openPicker = (slot: 'A' | 'B') => {
     setActivePicker(slot);
     setPickerStep(1);
@@ -283,6 +320,7 @@ export const SimulateView: React.FC<SimulateViewProps> = ({
         <div
           className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-xs"
           onClick={() => setActivePicker(null)}
+          onKeyDown={handlePickerTabTrap}
         >
           <div
             ref={pickerPanelRef}

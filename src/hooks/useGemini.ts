@@ -37,7 +37,7 @@ export function useGemini() {
       }
       return text.trim();
     } catch (err: unknown) {
-      console.error('Error generating story from Gemini:', err);
+      if (import.meta.env.DEV) console.error('Error generating story from Gemini:', err);
       return "This choice has a real carbon impact. Small decisions, made consistently, add up to meaningful change over time.";
     }
   }, [getAIInstance]);
@@ -72,7 +72,7 @@ export function useGemini() {
       try {
         parsed = JSON.parse(text);
       } catch (jsonErr) {
-        console.error('Failed to parse Gemini simulation response JSON:', text, jsonErr);
+        if (import.meta.env.DEV) console.error('Failed to parse Gemini simulation response JSON:', text, jsonErr);
         throw new Error('Invalid JSON format returned by AI');
       }
 
@@ -99,7 +99,7 @@ export function useGemini() {
       setResult(simResult);
       return simResult;
     } catch (err: unknown) {
-      console.error('Error running simulation:', err);
+      if (import.meta.env.DEV) console.error('Error running simulation:', err);
       const errMsg = err instanceof Error ? err.message : 'An error occurred during comparison.';
       setError(errMsg);
       return null;
